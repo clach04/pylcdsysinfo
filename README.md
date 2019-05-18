@@ -21,6 +21,10 @@ Example:
 
     pip install pyusb
 
+    # for advanced drawing
+    sudo apt-get install python-pygame  # - Raspbian GNU/Linux 9 (stretch)
+    sudo apt-get install python-pil
+
 or through the distribution specific package install, example for Ubuntu/Debian:
 
     sudo apt-get install python-usb

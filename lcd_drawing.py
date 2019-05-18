@@ -5,7 +5,7 @@ import struct
 
 import pygame
 
-from _pylcdsysinfo import LCDSysInfo, TextLines, TextLines, BackgroundColours, TextColours
+from pylcdsysinfo import LCDSysInfo, TextLines, TextLines, BackgroundColours, TextColours
 
 import xml.etree.ElementTree as ET
 
