@@ -246,7 +246,16 @@ class LCDSysInfo( LCDSysInfo ):
 
 	def draw_image(self, filename, screen_x, screen_y, opacity = 1):
 
+		"""Given `filename`, open image and display on LCD
+        screen_x and screen_y are offsets
+
+        Does NOT write to flash memory.
+        NOTE this is not fast, can take between 2-4 minutes for a 320x240 image
+        (135-235 seconds) on Raspberry Pi 3B+ depending on complexity of image.
+        Speed is due to converting each pixel and then writing/sending each pixel one-by-one
+		"""
 		im = Image.open( filename )
+		im = im.convert('RGBA')  # below code expects RGBA, e.g. below will fail with a BMP without Alpha
 		pix = im.load()
 
 		width = im.size[0]
