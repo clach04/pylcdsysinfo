@@ -188,7 +188,7 @@ class LCDSysInfo( LCDSysInfo ):
 				self.screenBuffer[y][x] = colour
 
 
-		self.devh.controlMsg(0x40, LCD_DRAW_MANUAL, ba, 1, cc16o( colour ), self.usb_timeout_ms)
+		self.devh.controlMsg(0x40, LCD_DRAW_MANUAL, ba, LCD_DRAW_MANUAL_FILL, cc16o( colour ), self.usb_timeout_ms)
 
 		# pygame.draw.rect( self.screen, colour, [X1, Y1, X2-X1, Y2-Y1] )
 
