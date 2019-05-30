@@ -248,20 +248,30 @@ class LCDSysInfo( LCDSysInfo ):
 
 		"""Given `filename`, open image and display on LCD
         screen_x and screen_y are offsets
+		"""
+		im = Image.open( filename )
+		im = im.convert('RGBA')  # below code expects RGBA, e.g. below will fail with a BMP without Alpha
+		width = im.size[0]
+		height = im.size[1]
+		print( "draw image: " + filename + ", " + str( width ) + "x" + str( height ) )
+		self.draw_image_im(im, screen_x, screen_y, opacity=opacity)
+
+	def draw_image_im(self, im, screen_x, screen_y, opacity=1):
+		"""
+        `im` is a PIL Image, this should be in RGBA format/mode
+        screen_x and screen_y are offsets
 
         Does NOT write to flash memory.
         NOTE this is not fast, can take between 2-4 minutes for a 320x240 image
         (135-235 seconds) on Raspberry Pi 3B+ depending on complexity of image.
         Speed is due to converting each pixel and then writing/sending each pixel one-by-one
 		"""
-		im = Image.open( filename )
-		im = im.convert('RGBA')  # below code expects RGBA, e.g. below will fail with a BMP without Alpha
+		assert im.mode == 'RGBA'
 		pix = im.load()
 
 		width = im.size[0]
 		height = im.size[1]
 
-		print( "draw image: " + filename + ", " + str( width ) + "x" + str( height ) )
 
 		for y in range(0, height):
 
